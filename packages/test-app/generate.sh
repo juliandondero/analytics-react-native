@@ -29,8 +29,12 @@ done
 
 echo -e $integrations_require >> App.tsx
 
-yarn add $install_command @babel/runtime
+echo "Installing runtime dependencies"
+# Don't ask me why we need this
+yarn add $install_command @babel/{core,runtime}
 yarn add typescript react-native-typescript-transformer @types/{react,react-native} --dev
+
+echo "Building TypeScript sources"
 yarn tsc
 
 ../android-workaround.js
